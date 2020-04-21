@@ -39,12 +39,17 @@
 
 .remark-code, .remark-inline-code {
     font-family: 'Fira Code', Monaco, monospace;
-    font-size: 80%;
+    font-size: 70%;
 }
 
 .bottom-right {
     position: absolute;
     right: 5px;
+    bottom: 10px;
+}
+
+.bottom-left{
+	position: absolute;
     bottom: 10px;
 }
 

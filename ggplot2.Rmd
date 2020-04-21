@@ -122,7 +122,6 @@ qplot(x,y,data = mydata)
 
 
 ```{r fig.height=5, fig.width=5}
-data(iris)
 qplot(x = Sepal.Width,y = Petal.Width,data = iris)
 ```
 
@@ -224,18 +223,367 @@ In `ggplot()` land it means "something you can see" and it includes:
 
 ---
 
-# Lets look at some examples
+# Lets look at some examples using **PanTHERIA** dataset
+
+**Load the data**
+
+```{r message=FALSE, warning=FALSE}
+pantheria<- read_csv("data/sub_PanTHERIA.csv") %>% 
+  na.omit() %>% mutate(HabitatBreadth = as.character(HabitatBreadth))
+pantheria
+```
 
 ---
 ## `geom_histogram()`
 
 
-```{r fig.height=4, fig.width=4, message=FALSE, warning=FALSE}
-ggplot(data = iris,aes(x = Sepal.Width))+
+```{r fig.height=5, fig.width=5, message=FALSE, warning=FALSE}
+ggplot(pantheria,aes(x = log10(AdultBodyMass)))+
   geom_histogram()
 ```
 
+---
+
+## `geom_point()`
+
+```{r fig.height=5, fig.width=5, message=FALSE, warning=FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize)))+
+  geom_point()
+```
+
+---
+
+# 4. Statistical Transformations
+
+* Each geom has a default statistic, but these can be changed
+
+* plots, such as boxplots, barplot, prediction lines etc. require statistical transformations
+
+---
+
+# Example
+
+```{r error=TRUE}
+ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
+  geom_bar()
+```
 
 
+.bottom-left[
+The defult statistics for `geom_bar()` is a histogram count. 
+]
+---
+
+**The fix**
+
+```{r fig.height=5, fig.width=5}
+ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
+  geom_bar(stat = "identity")
+```
+
+---
+
+# 5. Scales
+
+* Control mapping from data to aesthetic attributes
+
+* One scale per aesthetic
+
+* general syntex: `scale_<aesthetic>_<type>`
 
 
+---
+
+# Examples
+
+### Plotting using defult colors
+
+```{r fig.height=4, fig.width=5}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle))+
+  geom_point()
+
+```
+
+---
+### Plotting with `scale` option
+
+**Scale color using `RColorBrewer`**
+```{r fig.height=4, fig.width=5}
+library(RColorBrewer)
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2") #<<
+```
+
+---
+
+## Scaling something that is not defined does nothing
+
+```{r fig.height=4, fig.width=5}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()
+```
+
+---
+## So how to scale shape?
+
+```{r fig.height=4, fig.width=5, eval=FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+ #<<
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()
+```
+
+---
+.center[
+```{r echo=FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()
+```
+]
+
+---
+
+# 6. Faceting
+
+* Lay out multiple plots on a page
+
+* Plot subsets into different panels
+
+### **Formula options**
+
+
+<img src="img/faceting_formula.png" width=50%>
+
+
+---
+
+## Example
+
+Plot the litter size as a function of body mass for each trophic level seperatly while keeping the shape-color scaling for acticity cycle
+
+`facet_wrap()`: define subsets as the levels of a single grouping variable
+
+```{r eval=FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_wrap(TrophicLevel~.) #<<
+```
+
+---
+.center[
+```{r echo=FALSE, fig.height=8, fig.width=10}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_wrap(TrophicLevel~.) #<<
+```
+]
+
+---
+
+`facet_grid()`: define subsets as the crossing of two grouping variables
+
+```{r eval = FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth) #<<
+```
+
+---
+.center[
+```{r echo = FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth) #<<
+```
+]
+
+---
+
+### Scale axis in facet
+
+When you have different values for the x or y axis in your data you need to scale it when faceting
+
+<img src="img/facets_scale.png" width=50%>
+
+* The axis are fixed by defult
+
+---
+
+## Example
+
+```{r eval = FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") #<<
+```
+
+---
+.center[
+```{r echo = FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") #<<
+```
+]
+
+---
+
+# 7. Themes
+
+* handles non-data plot elements such as:
+    * Axis labels
+    * Plot background
+    * Facet label background
+    * Legend appearance
+---
+
+## Example
+
+```{r eval = FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") +
+  theme_light()#<<
+```
+
+---
+.center[
+```{r echo = FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") +
+  theme_light()#<<
+```
+]
+
+---
+```{r eval = FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") +
+  theme_light()+
+  theme(legend.position = "none")#<<
+```
+
+---
+.center[
+```{r echo = FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") +
+  theme_light()+
+  theme(legend.position = "none")#<<
+```
+]
+
+---
+
+# 8. Position adjustments
+
+* Tweak positioning of geometric objects
+
+* Avoid overlaps
+
+---
+
+## Example
+
+If we add fill to the barplot from before without position adjusment we see that the parameters are stacked one on top of each other 
+
+```{r fig.height=4, fig.width=5}
+ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
+  geom_bar(stat = "identity")
+  
+```
+
+---
+
+**To put them one next to the other we will use `position_dodge()`
+```{r fig.height=4, fig.width=5}
+ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
+  geom_bar(stat = "identity",width = 0.6,
+           position = position_dodge(width = 1))#<<
+```
+
+---
+
+# `position_jitter()`
+
+**Avoid overplotting by jittering points**
+
+This is useful for **boxplot** and **violin** plot
+```{r eval = FALSE}
+ggplot(pantheria,aes(ActivityCycle,log10(AdultBodyMass)))+
+  geom_boxplot()+
+  geom_jitter(alpha = 0.6,width = 0.2)#<<
+
+```
+
+---
+.center[
+```{r echo = FALSE}
+ggplot(pantheria,aes(ActivityCycle,log10(AdultBodyMass)))+
+  geom_boxplot()+
+  geom_jitter(alpha = 0.6,width = 0.2)#<<
+
+```
+]
+
+---
+
+# Summary
+
+* Allows creating high quality plots
+* Many options
+* Many blogs and webpages explaining how to do different plots in ggplot
+* Disadvantage – takes time to learn the grammar
+
+### The book:
+https://ggplot2-book.org/
+
+---
+
+# Useful links
+* https://bradleyboehmke.github.io/tutorials/barchart
+* http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
+* color pallete generator: https://coolors.co/
