@@ -1,0 +1,53 @@
+Order	Genus	Species	RANGE_SZ	Body_length	CLUTCH_SZ	DEVELOPMENT	maxLONGEVITY	MATURITY	oviposit_spec	habitat_spec	South	North
+Caudata	Salamandra	lanzai	761	100	6	710	24	3	1	0	44.15	45.05
+Caudata	Speleomantes	ambrosii	920	68	12	300	17	2	1	1	43.93333333	44.83333333
+Caudata	Speleomantes	strinatii	8835	72	17	300	17	2	1	1		
+Anura	Pelophylax	epeiroticus	12291	99	2900	78	5		0	0	36.76666667	40.03333333
+Caudata	Speleomantes	italicus	17668	72	12	180	6	2	1	1	42.46666667	44.36666667
+Caudata	Calotriton	asper	27406	85	67	420	29	2	1	1	41.91666667	43.35
+Caudata	Salamandrina	terdigitata	28139	37	60	81	12		1	0	37.93333333	45.4
+Anura	Alytes	dickhilenii	30786	57	149	120	9		0	0	36.63333333	38.26666667
+Anura	Rana	latastei	33740	75	2720	74	4	1.5	0	0	44.05	46.25
+Caudata	Chioglossa	lusitanica	54347	49	34	252	10	4	1	0	39.3	43.73333333
+Caudata	Salamandrina	perspicillata	73940	50	65	72	12	4	1	0		
+Caudata	Lissotriton	italicus	75249	45	500	62	10	3	0	0	37.96666667	43.7
+Anura	Rana	iberica	100536	56	445	90	9	2	1	1	39.08333333	43.75
+Anura	Pelobates	ibericus	102728	48	913	89	6	1.5	0	0	36.05	41.25
+Caudata	Salamandra	atra	111209	88	5	710	17	2	1	0	42.08333333	48.35
+Anura	Rana	italica	115560	65	1350	140	8	2	1	1	37.93333333	45.13333333
+Caudata	Lissotriton	montandoni	123942	56	250	95	4	3	0	0	45.1	50.2
+Anura	Alytes	cisternasii	170441	50	60	120	6	2	1	0	37.13333333	42.16666667
+Caudata	Triturus	pygmaeus	174147	57	380	115	12	0.5	0	0	36.05	40.95
+Anura	Discoglossus	pictus	221343	80	5636	32	9	2.5	0	0	33.75	43.21666667
+Anura	Hyla	intermedia	225299	60	1000	60	20	1	0	0	36.7	46.36666667
+Caudata	Lissotriton	boscai	227171	45	250	82	10	1	0	0	36.86666667	43.66666667
+Caudata	Ommatotriton	ophryticus	268229	83	240	82	16		0	0		
+Caudata	Triturus	dobrogicus	272097	90	200	60	9	2	0	0	42.83333333	48.06666667
+Caudata	Pleurodeles	waltl	380067	123	1303	97	25	1.5	0	0	31.95	42.41666667
+Caudata	Triturus	karelinii	447924	90	250	70	15	3	0	0	36.16666667	46.1
+Caudata	Triturus	marmoratus	474622	81	416	56	25	2	0	0	40.81666667	49.71666667
+Anura	Discoglossus	galganoi	481777	80	1520	22	10	3	0	0	37.01666667	43.68333333
+Anura	Pelobates	cultripes	490647	125	7000	96	15	1.5	0	0	36.05	47.05
+Caudata	Triturus	carnifex	500716	89	300	70	16	3	0	0	37.78333333	48.15
+Anura	Pelobates	syriacus	520953	90	4000	93	10	2	0	0	31.63333333	45.5
+Anura	Pelophylax	perezi	640586	110	7160	61	10	1.5	0	0	36.05	46.88333333
+Anura	Hyla	meridionalis	678764	65	678	83	6	2	0	0	29.08333333	46.65
+Anura	Pelobates	punctatus	751479	50	1600	93	15	1	0	0	37.61666667	51.08333333
+Anura	Alytes	obstetricans	990093	55	80	121	7	2	1	0	36.28333333	52.55
+Caudata	Lissotriton	helveticus	1084377	47	505	68	19	2	0	0	40.61666667	58.48333333
+Anura	Bombina	variegata	1203882	55	170	44	27	0.5	0	0	37.8	52.16666667
+Caudata	Ichthyosaura	alpestris	1364949	70	530	104	22	2	0	0	37.51666667	55.65
+Anura	Rana	dalmatina	1806742	90	2000	81	10	2.5	0	0	36.43333333	56.33333333
+Caudata	Salamandra	salamandra	2163060	193	70	240	50	2	1	0	36.01666667	53.68333333
+Anura	Bufo	calamita	2237441	92	7500	29	17	2	0	0	36.05	59.35
+Anura	Bombina	bombina	2923652	60	926	37	20	1.5	0	0	40.33333333	56.66666667
+Anura	Pelophylax	lessonae	3429891	85	4000	67	12	1	0	0	43.93333333	60.26666667
+Anura	Hyla	arborea	3791326	52	1872	100	22	1.5	0	0	34.93333333	56.13333333
+Caudata	Triturus	cristatus	4378166	97	700	72	25	2	0	0	44.91666667	65.48333333
+Anura	Pelobates	fuscus	4501560	80	3500	64	16	1.5	0	0	41.56666667	59.73333333
+Anura	Pelophylax	ridibundus	7303049	180	16000	78	12	0.5	0	0	17.9	59.56666667
+Caudata	Lissotriton	vulgaris	7363668	58	400	50	28	2	0	0	36.56666667	67.13333333
+Anura	Bufo	viridis	7428714	140	36950	48	15	1.5	0	0	34.93333333	58.33333333
+Anura	Rana	temporaria	7784345	110	4500	52	17	2	0	0	41.08333333	71.05
+Anura	Rana	arvalis	9739978	80	4000	48	11	1.5	0	0	45.16666667	67.93333333
+Anura	Bufo	bufo	10570250	220	12000	50	40	2	0	0	28.66666667	69.33333333

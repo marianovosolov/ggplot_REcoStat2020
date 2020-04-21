@@ -1,0 +1,241 @@
+---
+title: "`ggplot2`"
+subtitle: "Maria Novosolov"
+date: "`r format(Sys.Date(),'%d-%m-%Y')`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "custom-fonts.css"]
+    chakra: "libs/remark-latest.min.js"
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      ratio: '16:9'
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r use-logo, echo=FALSE}
+xaringanExtra::use_logo("img/logo.png")
+```
+
+class: center, middle
+
+# The idea behind `ggplot2`
+
+Combining all the good and leaving out all the bad of all base R packages for plotting
+
+---
+
+# Some examples
+
+![](img/Picture1.png)
+
+---
+
+# What `ggplot2` can do?
+
+Almost anything you want it
+
+.center[
+<img src="img/15912721.png" width=40%>
+]
+---
+
+# What `ggplot2` can't do?
+
+It can't choose for you which graphics represent your data best
+
+.center[
+<img src="img/choose_graphics.jpg" width=50%>
+]
+
+---
+
+# The basics of `ggplot2`
+
+* Based on the Grammar of Graphics (Wilkinson, 2005)
+
+* Based on a layer system
+
+* Flexible set of components for creating any type of graphics
+
+---
+
+# Specification
+
+Components of a graphic:
+
+* **DATA** - the dataset that will be used for the other components
+
+* **TRANS** - variable transformation
+
+* **SCALE** - scale transformation
+
+* **ELEMENT** - graphs and their aesthetic attributes
+
+* **COORD** - a coordinate system
+
+* **GUIDE** - one or more guides
+
+---
+
+class: center, middle
+
+## Install the package using `install.packages("ggplot2")`
+
+## load the package with `library(ggplot2)`
+
+---
+
+# Two options of working with the package
+
+**`qplot()`** - quick and dirty plotting. Limitted options
+
+**`ggplot()`** - base function for more versetile plotting
+
+---
+
+.center[
+# `qplot()`
+]
+
+* Syntex similar the the `base` R `plot()`
+
+* **x** == predictor
+
+* **y** == response
+
+* **data** == the data frame that holds the variables to plot
+
+```{r eval=FALSE, include=TRUE}
+qplot(x,y,data = mydata)
+```
+
+---
+
+# Example using the `iris` dataset
+
+
+```{r fig.height=5, fig.width=5}
+data(iris)
+qplot(x = Sepal.Width,y = Petal.Width,data = iris)
+```
+
+---
+# The building blocks of `ggplot()`
+
+
+A .green[**plot**] is made up of multiple layers. 
+
+A .green[**layer**] consists of data, a set of
+mappings between variables and
+.green[**aes**]thetics, a .green[**geom**]etric object and a
+.green[**stat**]istical transformation.
+
+.green[**Scales**] control the details of the mapping.
+All components are independent and
+reusable.
+
+---
+
+# Adventages of the layers system
+
+* Change a single feature at a time
+
+* Create new types of plots on the fly
+
+* Cure against immobility
+
+* Developers can easily develop new layers without affecting other layers
+
+---
+
+class: inverse, center, middle
+
+# Lets dive into the syntex
+
+
+![](img/dive.png)
+
+---
+
+# Anatomy of the plot
+
+1. .green[**Data**] – the dataset name that you want to present
+
+2. .green[**Aesthetics**] – the variables you want to use in the plot
+
+3. .green[**Geom**] – the type of plot you want do
+
+4. **Themes** – control presentation of non-data elements
+
+5. **Stat** – statistical transformations 
+
+6. **Scale** – define parameters of the plot (exp: x-axis, color, etc.)
+
+.bottom-left[
+*The green variables are mandatory to create a plot
+]
+---
+
+# 1. Data
+
+In `ggplot()` you always have to specify what data you are using for the plot.
+
+Thus, you always work with data.frames/tibbles
+
+```{r fig.height=3, fig.width=3}
+ggplot(data = iris,aes(x = Sepal.Width,y = Petal.Width))
+```
+
+.footnote[
+*R function are placment based which means it anticipates the parameters type based on location. So you dont have to write "data", "x", "y" if you place them in the right place
+]
+---
+
+# 2. Aesthetic mapping
+
+In `ggplot()` land it means "something you can see" and it includes:
+
+* Position (x and y)
+
+* Color (a name of a color or a vector that will be used for color)
+
+* Fill (a name of a color or a vector that will be used for color)
+
+* Shape (a name of a shape or a vector that will be used for shape)
+
+* Line type
+
+* Size
+
+---
+
+# 3. Geometric obejs aka `geom`
+
+* A geom can only display certain aesthetics
+
+* A plot must have at least one geom but there is no upper limit
+
+---
+
+# Lets look at some examples
+
+---
+## `geom_histogram()`
+
+
+```{r fig.height=4, fig.width=4, message=FALSE, warning=FALSE}
+ggplot(data = iris,aes(x = Sepal.Width))+
+  geom_histogram()
+```
+
+
+
+
+
