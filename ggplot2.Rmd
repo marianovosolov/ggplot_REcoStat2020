@@ -278,7 +278,7 @@ The defult statistics for `geom_bar()` is a histogram count.
 
 ```{r fig.height=5, fig.width=5}
 ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
-  geom_bar(stat = "identity")
+  geom_bar(stat = "identity")#<<
 ```
 
 ---
@@ -298,11 +298,12 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 
 ### Plotting using defult colors
 
+Plotting the litter size as a function ob body mass grouped for activity cycle
+
 ```{r fig.height=4, fig.width=5}
 ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
                      color = ActivityCycle))+
   geom_point()
-
 ```
 
 ---
@@ -319,14 +320,14 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ---
 
-## Scaling something that is not defined does nothing
+## Scaling a parameter that is not defined does nothing. Example with trying to scale the shape
 
 ```{r fig.height=4, fig.width=5}
 ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
                      color = ActivityCycle))+
   geom_point()+
   scale_color_brewer(palette = "Dark2")+
-  scale_shape()
+  scale_shape() #<<
 ```
 
 ---
@@ -537,8 +538,9 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
 ```
 
 ---
+# `position_dodge()`
 
-**To put them one next to the other we will use `position_dodge()`
+**To put them one next to the other
 ```{r fig.height=4, fig.width=5}
 ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
   geom_bar(stat = "identity",width = 0.6,
