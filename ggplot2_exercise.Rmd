@@ -1,0 +1,198 @@
+---
+title: "ggplot2 class code"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r message=FALSE, warning=FALSE}
+pantheria<- read_csv("data/sub_PanTHERIA.csv") %>% 
+  na.omit() %>% mutate(HabitatBreadth = as.character(HabitatBreadth))
+```
+
+## Basic syyntex for `ggplot2`
+
+### `geom_histogram()`
+
+
+```{r histogram, exercise=TRUE}
+ggplot(pantheria,aes(x = log10(AdultBodyMass)))+
+  geom_histogram()
+```
+
+### `geom_point()`
+
+```{r point, exercise=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize)))+
+  geom_point()
+```
+
+## Statistical Transformations
+
+### example with geom_bar
+
+```{r bar-error, exercise=TRUE, error=TRUE}
+ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
+  geom_bar()
+```
+
+### The fix
+
+```{r bar, exercise=TRUE, error=TRUE}
+ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
+  geom_bar(stat = "identity")
+```
+
+
+
+
+## Scales
+
+### Example with defult colors
+
+Plotting the litter size as a function ob body mass grouped for activity cycle
+
+```{r scales-basic, exercise=TRUE, error=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle))+
+  geom_point()
+```
+
+### Plotting with `scale` option
+
+```{r colorBrewer, exercise=TRUE, error=TRUE}
+library(RColorBrewer)
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")
+```
+
+
+### Scaling without defining the parameter
+
+```{r scale-not-defin, exercise=TRUE, error=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()
+```
+
+
+The fix for this
+
+```{r shape-scale-fix, exercise=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+ #<<
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()
+```
+
+
+## Faceting
+
+Plot the litter size as a function of body mass for each trophic level seperatly while keeping the shape-color scaling for acticity cycle.
+
+`facet_wrap()`: define subsets as the levels of a single grouping variable
+
+```{r facet_wrap, exercise=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_wrap(TrophicLevel~.)
+```
+
+
+`facet_grid()`: define subsets as the crossing of two grouping variables
+
+```{r facet_grid, exercise=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth)
+```
+
+Scale the axis in facet
+
+```{r scale-axis, exercise=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") #<<
+```
+
+
+## Themes
+
+```{r theme-light, exercise=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") +
+  theme_light()#<<
+```
+
+
+```{r legend, exercise=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape()+
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") +
+  theme_light()+
+  theme(legend.position = "none")#<<
+```
+
+## Position adjustments
+
+**`position_dodge()`**
+
+```{r position-dodge, exercise=TRUE}
+ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
+  geom_bar(stat = "identity",width = 0.6,
+           position = position_dodge(width = 1))
+```
+
+**`position_jitter()`**
+
+This is useful for **boxplot** and **violin** plot
+
+```{r position_adjust,exercise = TRUE}
+ggplot(pantheria,aes(ActivityCycle,log10(AdultBodyMass)))+
+  geom_boxplot()+
+  geom_jitter(alpha = 0.6,width = 0.2)
+```
+
+## Exercise
+
+
+```{r, echo=FALSE}
+sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
+plotOutput("distPlot")
+```
+
+```{r, context="server"}
+output$distPlot <- renderPlot({
+  x <- faithful[, 2]  # Old Faithful Geyser data
+  bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  hist(x, breaks = bins, col = 'darkgray', border = 'white')
+})
+```
+
+
