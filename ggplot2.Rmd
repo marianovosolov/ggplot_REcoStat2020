@@ -13,16 +13,116 @@ output:
       ratio: '16:9'
 ---
 
+class: inverse, center, middle
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 library(tidyverse)
 library(ggplot2)
+library(icon)
 ```
 
 ```{r use-logo, echo=FALSE}
 xaringanExtra::use_logo("img/logo.png")
 ```
 
+
+
+# A quick introduction to R projects and github
+(adopted from the GLOBE R working group)
+
+---
+
+# What is Git and Github
+
+* Git is a version control system that lives on your computer. Think "track changes" for files.
+
+* Github is "Dropbox" for git-based projects on the internet.
+
+.center[
+<img src="img/github_octocat.png" width=30%>
+]
+
+---
+
+# What github us used for
+
+- share/store analyses and functions
+- browse past versions of code
+- browse source code ([CRAN](https://github.com/cran),  [tidyverse](https://github.com/tidyverse/), [rOpenSci](https://github.com/ropensci))
+- use packages not on CRAN (`devtools::install_github("account/repo")`)
+- host web pages 
+
+<br>  
+You get unlimited private GitHub repositories for _free_ (normally $7/month) while you are a student! Sign up [here](https://education.github.com/pack).
+
+---
+# GitHub terminology
+
+- **repository** or repo - project/folder `r fa_folder()`
+- **local** - files stored on your computer `r fa_file_code()` `r fa_file_image()` `r fa_file_excel()`
+- **remote** - files on github.com `r fa_github()`
+
+---
+# What's the deal with projects?
+
+Each project is a self-contained set of files. Projects make it **easy to transfer** files to another computer because its **boundaries are clearly defined**
+
+.center[
+<img src="img/project.jpg" width=40% align="center">
+]
+---
+# Use relative paths inside projects
+ 
+- looks cleaner
+- works for other people/computers
+
+```{r eval = FALSE}
+read.csv("data/eilat_survey_2017.csv")
+#rather than
+read.csv("C:/חזי/phd/thesis/reef_surveys/data/eilat_survey_2017.csv")
+# or
+setwd("C:/חזי/phd/thesis/reef_surveys/data")
+read.csv("/eilat_survey_2017.csv")
+```
+
+You never have to use `setwd()` again! 
+
+---
+class: inverse
+background-image: url(http://ohi-science.org/data-science-training/img/clone_step1.png)
+background-position: center
+background-size: 100%
+---
+class: inverse
+background-image: url(http://ohi-science.org/data-science-training/img/new_project_1.png)
+background-position: center
+background-size: 100%
+---
+class: inverse
+background-image: url(http://ohi-science.org/data-science-training/img/new_project_2.png)
+background-position: center
+background-size: 100%
+---
+class: inverse
+background-image: url(http://ohi-science.org/data-science-training/img/new_project_3.png)
+background-position: center
+background-size: 100%
+---
+class: inverse
+background-image: url(https://media.giphy.com/media/vt4gALQsxCDmM/giphy.gif)
+background-position: center
+background-size: 100%
+---
+class: inverse
+background-image: url(https://media.giphy.com/media/vt4gALQsxCDmM/giphy.gif), url(http://ohi-science.org/data-science-training/img/new_project_4.png)
+background-position: bottom right, center
+background-size: 30%, 100%
+---
+class: inverse, center, middle
+
+# Let's start with `ggplot2`
+---
 class: center, middle
 
 # The idea behind `ggplot2`
@@ -94,9 +194,9 @@ class: center, middle
 
 # Two options of working with the package
 
-**`qplot()`** - quick and dirty plotting. Limitted options
+**`qplot()`** - quick and dirty plotting. Limited options
 
-**`ggplot()`** - base function for more versetile plotting
+**`ggplot()`** - base function for more versatile plotting
 
 ---
 
@@ -104,7 +204,7 @@ class: center, middle
 # `qplot()`
 ]
 
-* Syntex similar the the `base` R `plot()`
+* Syntax similar the the `base` R `plot()`
 
 * **x** == predictor
 
@@ -142,7 +242,7 @@ reusable.
 
 ---
 
-# Adventages of the layers system
+# Advantages of the layers system
 
 * Change a single feature at a time
 
@@ -156,7 +256,7 @@ reusable.
 
 class: inverse, center, middle
 
-# Lets dive into the syntex
+# Lets dive into the syntax
 
 
 ![](img/dive.png)
@@ -193,7 +293,7 @@ ggplot(data = iris,aes(x = Sepal.Width,y = Petal.Width))
 ```
 
 .footnote[
-*R function are placment based which means it anticipates the parameters type based on location. So you dont have to write "data", "x", "y" if you place them in the right place
+*R function are placement based which means it anticipates the parameters type based on location. So you don't have to write "data", "x", "y" if you place them in the right place
 ]
 ---
 
@@ -215,7 +315,7 @@ In `ggplot()` land it means "something you can see" and it includes:
 
 ---
 
-# 3. Geometric obejs aka `geom`
+# 3. Geometric objects aka `geom`
 
 * A geom can only display certain aesthetics
 
@@ -252,7 +352,23 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize)))+
 ```
 
 ---
+class: exercise, center, middle
 
+# Lets practice!
+
+## First plot:
+
+Plot a histogram for age at first birth and litter per year
+
+---
+
+class: exercise, center, middle
+
+## Second plot:
+
+Plot a scatter plot for litter per year as a function of gestation length
+
+---
 # 4. Statistical Transformations
 
 * Each geom has a default statistic, but these can be changed
@@ -270,7 +386,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 
 
 .bottom-left[
-The defult statistics for `geom_bar()` is a histogram count. 
+The default statistics for `geom_bar()` is a histogram count. 
 ]
 ---
 
@@ -289,14 +405,14 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 
 * One scale per aesthetic
 
-* general syntex: `scale_<aesthetic>_<type>`
+* general syntax: `scale_<aesthetic>_<type>`
 
 
 ---
 
 # Examples
 
-### Plotting using defult colors
+### Plotting using default colors
 
 Plotting the litter size as a function ob body mass grouped for activity cycle
 
@@ -327,18 +443,60 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
                      color = ActivityCycle))+
   geom_point()+
   scale_color_brewer(palette = "Dark2")+
-  scale_shape() #<<
+  scale_shape(solid = T) #<<
 ```
 
 ---
-## So how to scale shape?
+## So how to add shape?
 
 ```{r fig.height=4, fig.width=5, eval=FALSE}
 ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
                      color = ActivityCycle,shape = ActivityCycle))+ #<<
   geom_point()+
+  scale_color_brewer(palette = "Dark2")
+```
+---
+.center[
+```{r echo=FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")
+```
+]
+---
+## Scale shape parameters:
+
+```{r fig.height=4, fig.width=5, eval=FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
   scale_color_brewer(palette = "Dark2")+
-  scale_shape()
+  scale_shape(solid = F,name = "Activity Cycle") #<<
+```
+---
+.center[
+```{r echo=FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape(solid = F,name = "Activity Cycle")
+```
+]
+---
+# Change the shapes manually
+
+![](img/shapes.png)
+---
+# Change the shapes manually
+
+```{r eval=FALSE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape_manual(values = c(1,12,10)) #<<
 ```
 
 ---
@@ -348,10 +506,17 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
                      color = ActivityCycle,shape = ActivityCycle))+
   geom_point()+
   scale_color_brewer(palette = "Dark2")+
-  scale_shape()
+  scale_shape_manual(values = c(1,12,10)) #<<
 ```
-]
 
+]
+---
+
+class: exercise, center, middle
+
+# Lets practice!
+
+Plot the Home range as a function of body mass, with diet breadth as the color and activity cycle as the shape. Assign the shapes manually and use the Set2 palette 
 ---
 
 # 6. Faceting
@@ -370,7 +535,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ## Example
 
-Plot the litter size as a function of body mass for each trophic level seperatly while keeping the shape-color scaling for acticity cycle
+Plot the litter size as a function of body mass for each trophic level separately while keeping the shape-color scaling for activity cycle
 
 `facet_wrap()`: define subsets as the levels of a single grouping variable
 
@@ -422,13 +587,21 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ---
 
+class: exercise, center, middle
+
+# Lets practice!
+
+Plot the Home range as a function of body mass, with a single plot for each habitat breadth
+
+---
+
 ### Scale axis in facet
 
 When you have different values for the x or y axis in your data you need to scale it when faceting
 
 <img src="img/facets_scale.png" width=50%>
 
-* The axis are fixed by defult
+* The axis are fixed by default
 
 ---
 
@@ -516,6 +689,14 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
   theme(legend.position = "none")#<<
 ```
 ]
+---
+class: exercise, center, middle
+
+# Lets practice!
+
+Use the plot from the previous practice and remove the grey background using the `theme()` function
+
+<br> Hint: if you're having trouble try to use Google `r fa("smile")`
 
 ---
 
@@ -529,7 +710,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ## Example
 
-If we add fill to the barplot from before without position adjusment we see that the parameters are stacked one on top of each other 
+If we add fill to the barplot from before without position adjustment we see that the parameters are stacked one on top of each other 
 
 ```{r fig.height=4, fig.width=5}
 ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
@@ -551,7 +732,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
 
 # `position_jitter()`
 
-**Avoid overplotting by jittering points**
+**Avoid over-plotting by jittering points**
 
 This is useful for **boxplot** and **violin** plot
 ```{r eval = FALSE}
@@ -588,4 +769,47 @@ https://ggplot2-book.org/
 # Useful links
 * https://bradleyboehmke.github.io/tutorials/barchart
 * http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
-* color pallete generator: https://coolors.co/
+* color palette generator: https://coolors.co/
+
+---
+# Swirl
+
+* A package to learn R in R. 
+* Saves your progress as long as you use the same name
+* If you make a mistake you get a hint
+* To install: `install.packages("swirl")`
+* To load `library(swirl)`
+
+---
+# Homework
+
+* After installing swirl download homework using the following command:
+
+`install_course_github("marianovosolov","exercise_REcoStat2020",multi = T)`
+
+* There will also be the homework for the tidyverse session ignore that for now
+
+* Start the lesson with `swirl()`
+
+---
+
+### Tips to navigate within `swirl`
+
+| When you are at the R prompt (>):
+| -- Typing skip() allows you to skip the current question.
+| -- Typing play() lets you experiment with R on your own; swirl will ignore what you do...
+| -- UNTIL you type nxt() which will regain swirl's attention.
+| -- Typing bye() causes swirl to exit. Your progress will be saved.
+| -- Typing main() returns you to swirl's main menu.
+| -- Typing info() displays these options again.
+
+---
+
+---
+.center[
+# Good luck!!
+
+Reach through slack for any questions and feedback
+
+
+]

@@ -70,11 +70,11 @@
 
 .exercise {
   background-color: #5f021f;
-  color: #f3f3f3;
+  color: #f7f7f7;
   //text-shadow: 0 0 10px #333;
 }
 .exercise h1, .inverse h2, .inverse h3 {
-  color: #f3f3f3;
+  color: #f7f7f7;
 }
 
 .pull-left-big {
