@@ -8,14 +8,22 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 knitr::opts_chunk$set(echo = FALSE)
-```
-
-```{r message=FALSE, warning=FALSE}
-pantheria<- read_csv("data/sub_PanTHERIA.csv") %>% 
+pantheria<- read_csv("https://raw.githubusercontent.com/marianovosolov/ggplot_REcoStat2020/master/data/sub_PanTHERIA.csv") %>% 
   na.omit() %>% mutate(HabitatBreadth = as.character(HabitatBreadth))
 ```
 
-## Basic syyntex for `ggplot2`
+## Data examination
+
+```{r data,exercise=TRUE}
+
+pantheria<- read_csv("https://raw.githubusercontent.com/marianovosolov/ggplot_REcoStat2020/master/data/sub_PanTHERIA.csv") %>% 
+  na.omit() %>% mutate(HabitatBreadth = as.character(HabitatBreadth))
+
+pantheria
+names(pantheria)
+```
+
+## Basic syntax for `ggplot2`
 
 ### `geom_histogram()`
 
@@ -43,7 +51,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 
 ### The fix
 
-```{r bar, exercise=TRUE, error=TRUE}
+```{r bar, exercise=TRUE}
 ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
   geom_bar(stat = "identity")
 ```
@@ -53,7 +61,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 
 ## Scales
 
-### Example with defult colors
+### Example with default colors
 
 Plotting the litter size as a function ob body mass grouped for activity cycle
 
@@ -81,7 +89,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
                      color = ActivityCycle))+
   geom_point()+
   scale_color_brewer(palette = "Dark2")+
-  scale_shape()
+  scale_shape(solid = F)
 ```
 
 
@@ -89,16 +97,26 @@ The fix for this
 
 ```{r shape-scale-fix, exercise=TRUE}
 ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
-                     color = ActivityCycle,shape = ActivityCycle))+ #<<
+                     color = ActivityCycle,shape = ActivityCycle))+ 
   geom_point()+
   scale_color_brewer(palette = "Dark2")+
-  scale_shape()
+  scale_shape(solid = F,name = "Activity Cysle")
+```
+
+### Scale shape manually
+
+```{r scale-manual,exercise=TRUE}
+ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
+                     color = ActivityCycle,shape = ActivityCycle))+
+  geom_point()+
+  scale_color_brewer(palette = "Dark2")+
+  scale_shape_manual(values = c(1,12,10)) #<<
 ```
 
 
 ## Faceting
 
-Plot the litter size as a function of body mass for each trophic level seperatly while keeping the shape-color scaling for acticity cycle.
+Plot the litter size as a function of body mass for each trophic level separately while keeping the shape-color scaling for activity cycle.
 
 `facet_wrap()`: define subsets as the levels of a single grouping variable
 
@@ -131,7 +149,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
   geom_point()+
   scale_color_brewer(palette = "Dark2")+
   scale_shape()+
-  facet_grid(TrophicLevel~HabitatBreadth,scales = "free") #<<
+  facet_grid(TrophicLevel~HabitatBreadth,scales = "free")
 ```
 
 
@@ -144,7 +162,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
   scale_color_brewer(palette = "Dark2")+
   scale_shape()+
   facet_grid(TrophicLevel~HabitatBreadth,scales = "free") +
-  theme_light()#<<
+  theme_light()
 ```
 
 
@@ -156,7 +174,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
   scale_shape()+
   facet_grid(TrophicLevel~HabitatBreadth,scales = "free") +
   theme_light()+
-  theme(legend.position = "none")#<<
+  theme(legend.position = "none")
 ```
 
 ## Position adjustments
@@ -178,21 +196,4 @@ ggplot(pantheria,aes(ActivityCycle,log10(AdultBodyMass)))+
   geom_boxplot()+
   geom_jitter(alpha = 0.6,width = 0.2)
 ```
-
-## Exercise
-
-
-```{r, echo=FALSE}
-sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
-plotOutput("distPlot")
-```
-
-```{r, context="server"}
-output$distPlot <- renderPlot({
-  x <- faithful[, 2]  # Old Faithful Geyser data
-  bins <- seq(min(x), max(x), length.out = input$bins + 1)
-  hist(x, breaks = bins, col = 'darkgray', border = 'white')
-})
-```
-
 
