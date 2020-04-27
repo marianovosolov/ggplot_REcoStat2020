@@ -808,11 +808,11 @@ https://ggplot2-book.org/
 
 * After installing swirl download homework using the following command:
 
-`install_course_github("marianovosolov","exercise_REcoStat2020",multi = T)`
+`install_course_github("marianovosolov","exercise_REcoStat2020",multi = F)`
 
 * There will also be the homework for the tidyverse session ignore that for now
 
-* Start the lesson with `swirl()`
+* Start the swirl working environment with `swirl()` and follow the istructions
 
 * Due date: 04/05/2020 23:59
 
@@ -833,8 +833,6 @@ https://ggplot2-book.org/
 | -- Typing main() returns you to swirl's main menu.
 
 | -- Typing info() displays these options again.
-
----
 
 ---
 .center[
