@@ -77,9 +77,9 @@
   color: #f7f7f7;
 }
 
-.pull-left-big {
+.pull-left-small {
   float: left;
-  width: 57%;
+  width: 37%;
 }
 .pull-right-small {
   float: right;

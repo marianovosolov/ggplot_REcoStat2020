@@ -64,6 +64,24 @@ You get unlimited private GitHub repositories for _free_ (normally $7/month) whi
 - **remote** - files on github.com `r fa_github()`
 
 ---
+# R projects
+
+.pull-left[
+![](img/kitchen.jpg)
+
+Comfortable but hard to reproduce
+]
+
+
+.pull-right[
+![](img/lunchbox.jpg) 
+
+Portable, organized, minimalistic
+]
+
+
+
+---
 # What's the deal with projects?
 
 Each project is a self-contained set of files. Projects make it **easy to transfer** files to another computer because its **boundaries are clearly defined**
@@ -71,6 +89,16 @@ Each project is a self-contained set of files. Projects make it **easy to transf
 .center[
 <img src="img/project.jpg" width=40% align="center">
 ]
+---
+# Why use projects?
+
+Projects help to maintain good workflow habits:
+
+- **Fresh R processes** - each project comes with its own environment
+- **Portability** - projects have clearly defined base directories; makes it easy to [use relative paths](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/) 
+
+Extra reading: [basic care and feeding of data in R](http://stat545.com/block006_care-feeding-data.html)
+
 ---
 # Use relative paths inside projects
  
