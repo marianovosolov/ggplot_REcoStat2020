@@ -55,7 +55,7 @@ class: inverse, center, middle
 
 ---
 
-# What github us used for
+# What github is used for
 
 - share/store analyses and functions
 - browse past versions of code
@@ -129,22 +129,7 @@ You never have to use `setwd()` again!
 
 ---
 class: inverse
-background-image: url(http://ohi-science.org/data-science-training/img/clone_step1.png)
-background-position: center
-background-size: 100%
----
-class: inverse
 background-image: url(http://ohi-science.org/data-science-training/img/new_project_1.png)
-background-position: center
-background-size: 100%
----
-class: inverse
-background-image: url(http://ohi-science.org/data-science-training/img/new_project_2.png)
-background-position: center
-background-size: 100%
----
-class: inverse
-background-image: url(http://ohi-science.org/data-science-training/img/new_project_3.png)
 background-position: center
 background-size: 100%
 ---
@@ -152,11 +137,23 @@ class: inverse
 background-image: url(https://media.giphy.com/media/vt4gALQsxCDmM/giphy.gif)
 background-position: center
 background-size: 100%
+
 ---
-class: inverse
-background-image: url(https://media.giphy.com/media/vt4gALQsxCDmM/giphy.gif), url(http://ohi-science.org/data-science-training/img/new_project_4.png)
-background-position: bottom right, center
-background-size: 30%, 100%
+# If you're not convinced
+
+Everytime oyu start working with R remember to set your working directory to the folder where your data is using:
+
+```r
+setwd("path/to/your/files")
+```
+
+Or write the full path for each file you load
+
+```r
+data&lt;- read.csv("path/to/my/data")
+```
+
+
 ---
 class: inverse, center, middle
 
@@ -266,7 +263,7 @@ qplot(x,y,data = mydata)
 qplot(x = Sepal.Width,y = Petal.Width,data = iris)
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 # The building blocks of `ggplot()`
@@ -336,7 +333,7 @@ Thus, you always work with data.frames/tibbles
 ggplot(data = iris,aes(x = Sepal.Width,y = Petal.Width))
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 .footnote[
 *R function are placement based which means it anticipates the parameters type based on location. So you don't have to write "data", "x", "y" if you place them in the right place
@@ -410,7 +407,7 @@ ggplot(pantheria,aes(x = log10(AdultBodyMass)))+
   geom_histogram()
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -422,7 +419,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize)))+
   geom_point()
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 class: exercise, center, middle
@@ -462,7 +459,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 ## Error: stat_count() can only have an x or y aesthetic.
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 
 .bottom-left[
@@ -478,7 +475,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 * geom_bar(stat = "identity")
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -506,7 +503,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
   geom_point()
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 ---
 ### Plotting with `scale` option
@@ -521,7 +518,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 * scale_color_brewer(palette = "Dark2")
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -536,7 +533,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 * scale_shape(solid = T)
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ---
 ## So how to add shape?
@@ -550,7 +547,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 ```
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 ]
 ---
 ## Scale shape parameters:
@@ -565,7 +562,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 ```
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 ]
 ---
 # Change the shapes manually
@@ -585,7 +582,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ]
 ---
@@ -629,7 +626,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -648,7 +645,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -685,7 +682,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -714,7 +711,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -732,7 +729,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
 
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
 ]
 ---
 class: exercise, center, middle
@@ -763,7 +760,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
   geom_bar(stat = "identity")
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
 
 ---
 # `position_dodge()`
@@ -776,7 +773,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass),fill = ActivityCycle))+
 *          position = position_dodge(width = 1))
 ```
 
-![](ggplot2_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -794,7 +791,7 @@ ggplot(pantheria,aes(ActivityCycle,log10(AdultBodyMass)))+
 
 ---
 .center[
-![](ggplot2_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -835,6 +832,8 @@ https://ggplot2-book.org/
 * There will also be the homework for the tidyverse session ignore that for now
 
 * Start the lesson with `swirl()`
+
+* Due date: 04/05/2020 23:59
 
 ---
 

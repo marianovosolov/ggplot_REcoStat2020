@@ -45,7 +45,7 @@ xaringanExtra::use_logo("img/logo.png")
 
 ---
 
-# What github us used for
+# What github is used for
 
 - share/store analyses and functions
 - browse past versions of code
@@ -118,22 +118,7 @@ You never have to use `setwd()` again!
 
 ---
 class: inverse
-background-image: url(http://ohi-science.org/data-science-training/img/clone_step1.png)
-background-position: center
-background-size: 100%
----
-class: inverse
 background-image: url(http://ohi-science.org/data-science-training/img/new_project_1.png)
-background-position: center
-background-size: 100%
----
-class: inverse
-background-image: url(http://ohi-science.org/data-science-training/img/new_project_2.png)
-background-position: center
-background-size: 100%
----
-class: inverse
-background-image: url(http://ohi-science.org/data-science-training/img/new_project_3.png)
 background-position: center
 background-size: 100%
 ---
@@ -141,11 +126,21 @@ class: inverse
 background-image: url(https://media.giphy.com/media/vt4gALQsxCDmM/giphy.gif)
 background-position: center
 background-size: 100%
+
 ---
-class: inverse
-background-image: url(https://media.giphy.com/media/vt4gALQsxCDmM/giphy.gif), url(http://ohi-science.org/data-science-training/img/new_project_4.png)
-background-position: bottom right, center
-background-size: 30%, 100%
+# If you're not convinced
+
+Everytime oyu start working with R remember to set your working directory to the folder where your data is using:
+```{r eval=FALSE}
+setwd("path/to/your/files")
+```
+
+Or write the full path for each file you load
+```{r eval=FALSE}
+data<- read.csv("path/to/my/data")
+```
+
+
 ---
 class: inverse, center, middle
 
@@ -818,6 +813,8 @@ https://ggplot2-book.org/
 * There will also be the homework for the tidyverse session ignore that for now
 
 * Start the lesson with `swirl()`
+
+* Due date: 04/05/2020 23:59
 
 ---
 
