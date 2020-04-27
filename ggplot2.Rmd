@@ -843,7 +843,7 @@ https://ggplot2-book.org/
 .center[
 # Good luck!!
 
-Use slack for any questions and feedback
+Use #ggplot slack channel for any questions and feedback
 
 
 ]
