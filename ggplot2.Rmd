@@ -260,6 +260,7 @@ mappings between variables and
 .green[**stat**]istical transformation.
 
 .green[**Scales**] control the details of the mapping.
+
 All components are independent and
 reusable.
 
@@ -409,7 +410,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 
 
 .bottom-left[
-The default statistics for `geom_bar()` is a histogram count. 
+* The default statistics for `geom_bar()` is a histogram count. 
 ]
 ---
 
@@ -437,7 +438,7 @@ ggplot(pantheria,aes(Order,log10(AdultBodyMass)))+
 
 ### Plotting using default colors
 
-Plotting the litter size as a function ob body mass grouped for activity cycle
+Plotting the litter size as a function of body mass grouped for activity cycle
 
 ```{r fig.height=4, fig.width=5}
 ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
@@ -466,7 +467,7 @@ ggplot(pantheria,aes(log10(AdultBodyMass),log10(LitterSize),
                      color = ActivityCycle))+
   geom_point()+
   scale_color_brewer(palette = "Dark2")+
-  scale_shape(solid = T) #<<
+  scale_shape(solid = F) #<<
 ```
 
 ---
