@@ -97,7 +97,7 @@ Projects help to maintain good workflow habits:
 - **Fresh R processes** - each project comes with its own environment
 - **Portability** - projects have clearly defined base directories; makes it easy to [use relative paths](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/) 
 
-Extra reading: [basic care and feeding of data in R](http://stat545.com/block006_care-feeding-data.html)
+Extra reading: [basic care and feeding of data in R](http://stat545.com/block006_care-feeding-data.html) and [project management](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/)
 
 ---
 # Use relative paths inside projects
