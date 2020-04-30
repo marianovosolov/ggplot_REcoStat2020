@@ -234,4 +234,10 @@ class: center, middle
 More information on __websites__ and guidlines on how to build them can be found [here](https://bookdown.org/yihui/rmarkdown/websites.html)
 
 More information about how to build __books__ can be found [here](https://bookdown.org/yihui/rmarkdown/books.html)
+
 ---
+.center[
+# You are now ready to markdown!
+
+<p><img src="img/rmarkdown_rockstar.png" width=60%>
+]
