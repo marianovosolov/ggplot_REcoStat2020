@@ -112,7 +112,7 @@ class: exercise
 __Congradulations!!!__ 🎉 🎊 🥳 You created your first Rmd file!! `r emo::ji("smile")`
 
 .center[
-<p><img src="https://www.chronicle.com/blogs/profhacker/files/2018/01/markdowncat.jpg" width=80%>
+<p><img src="img/markdown_cat.jpeg" width=80%>
 ]
 
 ---
