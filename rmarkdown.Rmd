@@ -19,6 +19,9 @@ library(tidyverse)
 library(icon)
 ```
 
+```{r use-logo, echo=FALSE}
+xaringanExtra::use_logo("https://tinyurl.com/yc9aqyna")
+```
 
 #This presentation is based on:
 
@@ -43,7 +46,7 @@ A lightweight text editor originally built to be presented as html
 A __one-stop-shop__ for writing code and sharing your work with various formats
 
 .center[
-<p><img src="https://tinyurl.com/yc9aqyna" center width=30%>
+<p><img src="img/rmarkdown_rockstar.png" center width=50%>
 ]
 ---
 
